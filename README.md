@@ -16,7 +16,7 @@ An interactive React app that visualizes British Columbia wildfire incidents fro
 
 ## Demo
 
-- Live: https://your-demo-url.com](https://mola73.github.io/env-health-dashboard/
+- Live: https://mola73.github.io/env-health-dashboard/
 
 
 ---
