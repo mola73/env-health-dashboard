@@ -90,7 +90,7 @@ function MapComponent() {
     if(sizeHa > 5000) return '#ff0000'; //Massive
     if(sizeHa> 1000) return '#ffA500'; //Large
     if(sizeHa >500) return '#FFFF00'; // Medium
-    else return '#DFFF00'  // Small
+    else return '#00ff33ff'  // Small
    };
 
     // Function to determine marker size
@@ -199,19 +199,19 @@ function MapComponent() {
           <h3 style={{ margin: '0 0 10px 0', fontSize: '14px' }}>Fire Size (hectares)</h3>
           <div style={{ fontSize: '12px' }}>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
-              <div style={{ width: '15px', height: '15px', backgroundColor: '#8B0000', borderRadius: '50%', marginRight: '8px' }}></div>
+              <div style={{ width: '15px', height: '15px', backgroundColor: '#ff0000', borderRadius: '50%', marginRight: '8px' }}></div>
               <span>Extreme (&gt;5000 ha)</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
-              <div style={{ width: '15px', height: '15px', backgroundColor: '#FF4500', borderRadius: '50%', marginRight: '8px' }}></div>
+              <div style={{ width: '15px', height: '15px', backgroundColor: '#ffA500', borderRadius: '50%', marginRight: '8px' }}></div>
               <span>Large (1000-5000 ha)</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
-              <div style={{ width: '15px', height: '15px', backgroundColor: '#FFA500', borderRadius: '50%', marginRight: '8px' }}></div>
+              <div style={{ width: '15px', height: '15px', backgroundColor: '#DFFF00', borderRadius: '50%', marginRight: '8px' }}></div>
               <span>Medium (100-1000 ha)</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
-              <div style={{ width: '15px', height: '15px', backgroundColor: '#FFD700', borderRadius: '50%', marginRight: '8px' }}></div>
+              <div style={{ width: '15px', height: '15px', backgroundColor: '#00ff33ff', borderRadius: '50%', marginRight: '8px' }}></div>
               <span>Small (&lt;100 ha)</span>
             </div>
           </div>
