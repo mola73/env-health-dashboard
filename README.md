@@ -26,7 +26,7 @@ An interactive React app that visualizes British Columbia wildfire incidents fro
 - React 18
 - react-map-gl (Mapbox GL JS)
 - Vite (or CRA)
-- Plain CSS (swap for Tailwind if preferred)
+- Plain CSS 
 
 ---
 
