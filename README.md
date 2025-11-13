@@ -16,7 +16,7 @@ An interactive React app that visualizes British Columbia wildfire incidents fro
 
 ## Demo
 
-- Live: https://your-demo-url.com
+- Live: https://your-demo-url.com](https://mola73.github.io/env-health-dashboard/
 
 
 ---
@@ -45,7 +45,7 @@ If using CRA:
 - REACT_APP_MAPBOX_TOKEN=your_mapbox_access_token
 
 3) Run
-- npm run dev
+- npm start
 
 4) Build
 - npm run build
