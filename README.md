@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+# BC Wildfire Explorer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An interactive React app that visualizes British Columbia wildfire incidents from a GeoJSON source on a performant Mapbox GL map. Built with resilient data-loading, clean state management, and accessible UI.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## ✨ Highlights
 
-### `npm start`
+- Interactive map with markers and popups.
+- Rock-solid GeoJSON loading that works in dev and production (handles direct JSON, default-wrapped modules, and hashed static asset URLs).
+- Filters by year/status with immediate feedback.
+- Accessible, responsive UI with clear loading and error states.
+- Production-minded architecture that’s easy to extend and test.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Demo
 
-### `npm test`
+- Live: https://your-demo-url.com
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Tech Stack
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- React 18
+- react-map-gl (Mapbox GL JS)
+- Vite (or CRA)
+- Plain CSS 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1) Clone and install
+- git clone https://github.com/your-org/bc-wildfire-explorer.git
+- cd bc-wildfire-explorer
+- npm install
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2) Environment variables
+Create a .env.local with your token:
+- VITE_MAPBOX_TOKEN=your_mapbox_access_token
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+If using CRA:
+- REACT_APP_MAPBOX_TOKEN=your_mapbox_access_token
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3) Run
+- npm run dev
 
-## Learn More
+4) Build
+- npm run build
+- npm run preview
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Data
 
-### Code Splitting
+- Default dataset: ./src/data/bc-wildfires.geojson
+- The app’s loader handles three cases seamlessly:
+  - Direct JSON object
+  - ESM default-wrapped module
+  - Hashed static asset URL string (fetched at runtime)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## Resilient Data Loading (drop-in snippet)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```javascript
+import wildfireDataJSON from './data/bc-wildfires.geojson';
 
-### Making a Progressive Web App
+useEffect(() => {
+  const loadData = async () => {
+    try {
+      let data = wildfireDataJSON;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+      if (data?.default) data = data.default;
 
-### Advanced Configuration
+      if (typeof data === 'string') {
+        const res = await fetch(data);
+        data = await res.json();
+      }
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+      setWildfireData(data);
+    } catch (e) {
+      console.error('Error loading data', e);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  loadData();
+}, []);
