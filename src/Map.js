@@ -1,12 +1,17 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import Map, { Marker, Popup } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import wildfireDataJSON from './data/bc-wildfires.geojson';
+import RiskChecker from "./RiskChecker"; 
+
+
 
 function MapComponent() {
     const [wildfireData, setWildfireData] = useState(null);
     const [loading, setLoading] = useState(true);
+const mapRef = useRef(null);
+
 
     useEffect(() => {
         // Handle different import formats
@@ -48,6 +53,7 @@ function MapComponent() {
     const [selectedFire, setSelectedFire] = useState(null);
     const [showWildFires, setShowWildFires] = useState(true);
     const [filterYear, setFilteryear] = useState('all');
+    
 
     // Show loading screen
     if (loading || !wildfireData) {
@@ -77,6 +83,9 @@ function MapComponent() {
     ? wildfireData.features // get all features form the data
     :wildfireData.features.filter(f=> f.properties.FIRE_YEAR === parseInt(filterYear)) //get features of a specific year
    
+
+    // Get specific Location by Long. and Lan
+    //const 
    // Determine marker color by fire size
    // 
    if (loading) {
@@ -179,7 +188,18 @@ function MapComponent() {
                 ))}
 
                 </select>
+
+               
             </div>
+
+           <RiskChecker
+  mapboxToken={process.env.REACT_APP_MAPBOX_TOKEN}
+  wildfireGeoJson={wildfireData}   // ✅ FeatureCollection
+  mapRef={mapRef}                  // ✅ enables flyTo()
+/>
+
+
+
 
             {/*Toggle Controls */}
             <div style= {{marginBottom: '15px'}}>
@@ -232,6 +252,8 @@ function MapComponent() {
             
             </div>
             <Map
+            ref= {mapRef}
+            
             {...viewState}
             onMove={evt => setViewState(evt.viewState)}
             mapStyle="mapbox://styles/mapbox/light-v11"
@@ -332,6 +354,8 @@ function MapComponent() {
           </Popup>
 
             )}
+
+
             </Map>
             </div>
     );
