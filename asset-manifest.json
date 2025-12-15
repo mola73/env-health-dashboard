@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/env-health-dashboard/static/css/main.8d65322a.css",
+    "main.js": "/env-health-dashboard/static/js/main.07151067.js",
+    "static/js/879.fb4b0c17.chunk.js": "/env-health-dashboard/static/js/879.fb4b0c17.chunk.js",
+    "static/js/453.9f084d23.chunk.js": "/env-health-dashboard/static/js/453.9f084d23.chunk.js",
+    "static/media/bc-wildfires.geojson": "/env-health-dashboard/static/media/bc-wildfires.09e77507a8e6f6b7c4ca.geojson",
+    "index.html": "/env-health-dashboard/index.html",
+    "main.8d65322a.css.map": "/env-health-dashboard/static/css/main.8d65322a.css.map",
+    "main.07151067.js.map": "/env-health-dashboard/static/js/main.07151067.js.map",
+    "879.fb4b0c17.chunk.js.map": "/env-health-dashboard/static/js/879.fb4b0c17.chunk.js.map",
+    "453.9f084d23.chunk.js.map": "/env-health-dashboard/static/js/453.9f084d23.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8d65322a.css",
+    "static/js/main.07151067.js"
+  ]
+}
